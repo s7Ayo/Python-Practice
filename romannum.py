@@ -1,23 +1,21 @@
-def solution(roman):
-   
-    acc = 0 # accumlator of the values of the roman characters 
-    
-    char_roman = [*str(roman)] # breaks down the string into alist of chars 
-    
-    roman_numerals = {# the dictonary of th values of the roma numbers 
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
-    }
-    for i in range(len(char_roman)+1):
-        acc += roman_numerals(char_roman[i])
-        
-    print(acc)
-    
-    return 1
-
-solution("MCMLXXXIX")
+def solution(n):
+    value = [
+        1000, 900, 500, 400,
+        100, 90, 50, 40,
+        10, 9, 5, 4,
+        1
+        ]
+    symbol = [
+        "M", "CM", "D", "CD",
+        "C", "XC", "L", "XL",
+        "X", "IX", "V", "IV",
+        "I"
+        ]
+    roman_num = ''
+    i = 0
+    while  n > 0:
+        for _ in range(n // value[i]):
+            roman_num += symbol[i]
+            n -= value[i]
+        i += 1
+    return roman_num
